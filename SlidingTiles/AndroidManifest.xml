@@ -29,6 +29,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".SlidingGrid"
+            android:label="@string/title_activity_sliding_grid" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".NumberMode"
+            android:label="@string/title_activity_number_mode" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cs554.proj.slidingtiles.SlidingGrid" />
+        </activity>
+        <activity
+            android:name=".MathMode"
+            android:label="@string/title_activity_math_mode" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cs554.proj.slidingtiles.SlidingGrid" />
+        </activity>
     </application>
 
 </manifest>

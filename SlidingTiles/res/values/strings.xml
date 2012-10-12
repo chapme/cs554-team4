@@ -13,5 +13,9 @@
     <string name="radioGrid5">5</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_setup_number_game">Setup Number Game</string>
+    <string name="title_activity_sliding_grid">Sliding Grid</string>
+    <string name="title_activity_number_mode">Number Game</string>
+    <string name="startButton">Start</string>
+    <string name="title_activity_math_mode">MathMode</string>
 
 </resources>

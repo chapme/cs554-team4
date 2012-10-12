@@ -26,7 +26,7 @@ public class MainMenu extends Activity {
     }
     
     public void selectMathMode(View view) {
-    	Intent intent = new Intent(this, MainMenu.class);
+    	Intent intent = new Intent(this, MathMode.class);
     	startActivity(intent);
     }
 }

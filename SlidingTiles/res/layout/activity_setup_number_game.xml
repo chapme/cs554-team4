@@ -41,4 +41,8 @@
             android:text="@string/radioGrid5"
             android:onClick="onRadioButtonClicked" />
     </RadioGroup>
+    <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/startButton"
+            android:onClick="startGame" />
 </LinearLayout>

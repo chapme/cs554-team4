@@ -23,11 +23,17 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_main_menu=0x7f030000;
-        public static final int activity_setup_number_game=0x7f030001;
+        public static final int activity_math_mode=0x7f030001;
+        public static final int activity_number_mode=0x7f030002;
+        public static final int activity_setup_number_game=0x7f030003;
+        public static final int activity_sliding_grid=0x7f030004;
     }
     public static final class menu {
         public static final int activity_main_menu=0x7f060000;
-        public static final int activity_setup_number_game=0x7f060001;
+        public static final int activity_math_mode=0x7f060001;
+        public static final int activity_number_mode=0x7f060002;
+        public static final int activity_setup_number_game=0x7f060003;
+        public static final int activity_sliding_grid=0x7f060004;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
@@ -41,8 +47,12 @@ public final class R {
         public static final int radioGrid3=0x7f040008;
         public static final int radioGrid4=0x7f040009;
         public static final int radioGrid5=0x7f04000a;
+        public static final int startButton=0x7f04000f;
         public static final int title_activity_main_menu=0x7f040002;
+        public static final int title_activity_math_mode=0x7f040010;
+        public static final int title_activity_number_mode=0x7f04000e;
         public static final int title_activity_setup_number_game=0x7f04000c;
+        public static final int title_activity_sliding_grid=0x7f04000d;
     }
     public static final class style {
         public static final int AppTheme=0x7f050000;

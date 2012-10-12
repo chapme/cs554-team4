@@ -9,6 +9,7 @@ import android.widget.RadioButton;
 
 public class SetupNumberGame extends Activity {
 	private int gridSize = 5;
+	public final static String GRID_SIZE = "cs554.proj.slidingtiles.GRID_SIZE";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,12 @@ public class SetupNumberGame extends Activity {
     	case R.id.radioGrid5:
     		this.gridSize = 5;
     		break;
+    	}
     }
+    
+    public void startGame(View view) {
+    	Intent intent = new Intent(this, NumberMode.class);
+    	intent.putExtra(GRID_SIZE, this.gridSize);
+    	startActivity(intent);
     }
 }
