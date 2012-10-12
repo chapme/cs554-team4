@@ -1,14 +1,44 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent" 
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+        <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/backButton"
+            android:onClick="back" 
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+    <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/hello_world"
-        tools:context=".SetupNumberGame" />
+        android:text="@string/gridSize"/>
 
-</RelativeLayout>
+    <RadioGroup android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" 
+        android:checkedButton="@+id/radioGrid5">
+        <RadioButton android:id="@+id/radioGrid2"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/radioGrid2"
+            android:onClick="onRadioButtonClicked" />
+        <RadioButton android:id="@+id/radioGrid3"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/radioGrid3"
+            android:onClick="onRadioButtonClicked" />
+        <RadioButton android:id="@+id/radioGrid4"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/radioGrid4"
+            android:onClick="onRadioButtonClicked" />
+        <RadioButton android:id="@+id/radioGrid5"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/radioGrid5"
+            android:onClick="onRadioButtonClicked" />
+    </RadioGroup>
+</LinearLayout>

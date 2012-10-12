@@ -21,7 +21,7 @@ public class MainMenu extends Activity {
     }
     
     public void selectNumberMode(View view) {
-    	Intent intent = new Intent(this, MainMenu.class);
+    	Intent intent = new Intent(this, SetupNumberGame.class);
     	startActivity(intent);
     }
     

@@ -5,6 +5,12 @@
     <string name="title_activity_main_menu">Main Menu</string>
     <string name="mmButton">Play the Math Game!</string>
     <string name="nmButton">Play the Number Game!</string>
+    <string name="backButton">Back to Main Menu</string>
+    <string name="gridSize">Grid Size</string>
+    <string name="radioGrid2">2</string>
+    <string name="radioGrid3">3</string>
+    <string name="radioGrid4">4</string>
+    <string name="radioGrid5">5</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_setup_number_game">Setup Number Game</string>
 
