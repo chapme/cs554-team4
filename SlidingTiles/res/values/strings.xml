@@ -1,8 +1,9 @@
 <resources>
 
     <string name="app_name">Sliding Tiles</string>
-    <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main_menu">Main Menu</string>
+    <string name="mmButton">Play the Math Game!</string>
+    <string name="nmButton">Play the Number Game!</string>
 
 </resources>
