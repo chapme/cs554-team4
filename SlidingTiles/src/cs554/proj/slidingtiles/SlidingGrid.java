@@ -1,9 +1,10 @@
 package cs554.proj.slidingtiles;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.TextView;
+import android.view.View;
 
 public class SlidingGrid extends Activity {
 	private int gridSize = 5;
@@ -11,16 +12,20 @@ public class SlidingGrid extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sliding_grid);
+        setContentView(R.layout.activity_sliding_grid_5);
     }
     
     public void onCreate(Bundle savedInstanceState, int gridSize) {
     	super.onCreate(savedInstanceState);
     	this.gridSize = gridSize;
-        setContentView(R.layout.activity_sliding_grid);
-        TextView textView = new TextView(this);
-        textView.setText(Integer.toString(gridSize));
-        setContentView(textView);
+    	if(gridSize == 2)
+    		setContentView(R.layout.activity_sliding_grid_2);
+    	else if(gridSize == 3)
+    		setContentView(R.layout.activity_sliding_grid_3);
+    	else if(gridSize == 4)
+    		setContentView(R.layout.activity_sliding_grid_4);
+    	else
+    		setContentView(R.layout.activity_sliding_grid_5);
     }
 
     @Override
@@ -35,5 +40,10 @@ public class SlidingGrid extends Activity {
     
     public int getGridSize(int gridSize) {
     	return gridSize;
+    }
+    
+    public void back(View view) {
+    	Intent intent = new Intent(this, MainMenu.class);
+    	startActivity(intent);
     }
 }
