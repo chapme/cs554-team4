@@ -6,6 +6,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
+/**
+ * @author me
+ *
+ * This class supports the main menu that is displayed when the app first opens
+ */
 public class MainMenu extends Activity {
 
     @Override
@@ -20,11 +25,20 @@ public class MainMenu extends Activity {
         return true;
     }
     
+    /**
+     * This function is for the button to select the number mode game
+     * 
+     * @param view
+     */
     public void selectNumberMode(View view) {
     	Intent intent = new Intent(this, SetupNumberGame.class);
     	startActivity(intent);
     }
     
+    /**
+     * This function is for the button to select the math mode game
+     * @param view
+     */
     public void selectMathMode(View view) {
     	Intent intent = new Intent(this, MathMode.class);
     	startActivity(intent);
