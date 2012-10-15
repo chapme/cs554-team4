@@ -6,11 +6,24 @@ import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 import java.util.Random;
 
+/**
+ * @author me
+ *
+ * The MathMode class generates a valid game layout for the math mode game for
+ * sliding tiles. This class contains all of the support functions needed for this
+ * mode.
+ */
+/**
+ * @author me
+ *
+ */
 public class MathMode extends SlidingGrid {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, 5);
+        // Generate a valid game layout and then scramble the grid so the
+        // user can play.
         generateGame();
         scrambleGrid(25);
     }
@@ -32,6 +45,16 @@ public class MathMode extends SlidingGrid {
         return super.onOptionsItemSelected(item);
     }
     
+    /**
+     * This function fills out a row in the grid
+     * 
+     * @param index Which row to fill out (1 to gridSize)
+     * @param v1 The value for the first tile in the row
+     * @param v2 The value for the second tile in the row
+     * @param v3 The value for the third tile in the row
+     * @param v4 The value for the fourth tile in the row
+     * @param v5 The value for the fifth tile in the row
+     */
     private void setRow(int index, String v1, String v2, String v3, String v4, String v5) {
     	setButtonText(index, 1, v1);
 		setButtonText(index, 2, v2);
@@ -40,6 +63,16 @@ public class MathMode extends SlidingGrid {
 		setButtonText(index, 5, v5);
     }
     
+    /**
+     * The function fills out a column in the grid.
+     * 
+     * @param index Which column to fill out (1 to gridSize)
+     * @param v1 The value for the first tile in the column
+     * @param v2 Value for the second tile
+     * @param v3 Value for the third tile
+     * @param v4 Value for the fourth tile
+     * @param v5 Value for the fifth tile
+     */
     private void setCol(int index, String v1, String v2, String v3, String v4, String v5) {
     	setButtonText(1, index, v1);
     	setButtonText(2, index, v2);
@@ -48,6 +81,12 @@ public class MathMode extends SlidingGrid {
     	setButtonText(5, index, v5);
     }
     
+    
+    /**
+     * Randomly chooses a tile value from the set of valid values.
+     * 
+     * @return Text for the tile
+     */
     private String generateTile() {
     	Random gen = new Random();
     	int val = gen.nextInt(14);
@@ -63,15 +102,29 @@ public class MathMode extends SlidingGrid {
     		return "=";
     }
     
+    /**
+     * Generates a valid game layout with one valid equation in either
+     * a row or column. The direction of the equation and it's values
+     * are chosen uniformly at random.
+     */
     private void generateGame() {
     	Random gen = new Random();
+    	// Whether we go across a row or down a column
     	int dir = gen.nextInt(2);
+    	// Which row or column we'll use
     	int index = gen.nextInt(getGridSize())+1;
+    	// Will the equals sign be on the second or fourth tile
     	int eqLoc = gen.nextInt(2);
+    	// The first number used
     	int i = gen.nextInt(10);
+    	// The second number used
     	int j = gen.nextInt(10);
+    	// Which operator we'll use
     	String op;
+    	// Operation result
     	int k;
+    	
+    	// Choose which operator we'll use and calculate the value for the equation
     	if(i*j < 10) {
     		op = "x";
     		k = i*j;
@@ -87,31 +140,39 @@ public class MathMode extends SlidingGrid {
     		}
     		k = i-j;
     	}
+    	
+    	// Enter the equation in the grid
     	if(dir == 0) {
+    		// We're using a row. Fill in the equation based on location of the equals sign
     		if(eqLoc == 0)
     			setRow(index, Integer.toString(i), op, Integer.toString(j), "=", Integer.toString(k));
     		else
     			setRow(index, Integer.toString(k), "=", Integer.toString(i), op, Integer.toString(j));
+    		//Fill out the rest of the grid
     		for(int x = 1; x <= getGridSize(); x++) {
     			if(x == index)
     				continue;
     			setRow(x, generateTile(), generateTile(), generateTile(), generateTile(), generateTile());
     		}
+    		// Choose which button to hide
     		int hr = gen.nextInt(getGridSize()-1)+1;
     		if(hr >= index)
     			hr++;
     		int hc = gen.nextInt(getGridSize())+1;
     		hideButton(hr, hc);
     	} else {
+    		// We're filling out a column. Fill out equation based on location of equals sign
     		if(eqLoc == 0)
     			setCol(index, Integer.toString(i), op, Integer.toString(j), "=", Integer.toString(k));
     		else
     			setCol(index, Integer.toString(k), "=", Integer.toString(i), op, Integer.toString(j));
+    		// Fill out the rest of the grid
     		for(int x = 1; x <= getGridSize(); x++) {
     			if(x == index)
     				continue;
     			setCol(x, generateTile(), generateTile(), generateTile(), generateTile(), generateTile());
     		}
+    		// Choose a button to hide
     		int hr = gen.nextInt(getGridSize())+1;
     		int hc = gen.nextInt(getGridSize()-1)+1;
     		if(hc >= index)
