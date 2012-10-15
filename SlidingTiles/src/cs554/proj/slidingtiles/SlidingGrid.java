@@ -1,12 +1,13 @@
 package cs554.proj.slidingtiles;
 
+import java.util.Random;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-import cs554.proj.slidingtiles.R;
 
 public class SlidingGrid extends Activity {
 	private int gridSize = 5;
@@ -44,7 +45,7 @@ public class SlidingGrid extends Activity {
     	this.gridSize = gridSize;
     }
     
-    public int getGridSize(int gridSize) {
+    public int getGridSize() {
     	return gridSize;
     }
     
@@ -116,10 +117,7 @@ public class SlidingGrid extends Activity {
     	return -1;
     }
     
-    public void processButtonPress(View view) {
-    	int id = view.getId();
-    	int row = getRow(id);
-    	int col = getCol(id);
+    private void processButtonPress(int row, int col) {
     	if(row == hbRow) {
     		if(col > hbCol) {
     			for(int i = hbCol; i < col; i++)
@@ -138,6 +136,31 @@ public class SlidingGrid extends Activity {
         			setButtonText(i, hbCol, getButtonText(i-1, hbCol));
     		}
     		hideButton(row, col);
+    	}    	
+    }
+    
+    public void processButtonPress(View view) {
+    	int id = view.getId();
+    	int row = getRow(id);
+    	int col = getCol(id);
+    	processButtonPress(row, col);
+    }
+    
+    public void scrambleGrid(int numMoves) {
+    	Random gen = new Random();
+    	while(numMoves > 0) {
+    		int dir = gen.nextInt(2);
+    		int tile = gen.nextInt(4)+1;
+    		if(dir == 0) {
+    			if(tile >= hbRow)
+    				tile++;
+    			processButtonPress(tile, hbCol);
+    		} else {
+    			if(tile >= hbCol)
+    				tile++;
+    			processButtonPress(hbRow, tile);
+    		}
+    		numMoves--;
     	}
     }
 }

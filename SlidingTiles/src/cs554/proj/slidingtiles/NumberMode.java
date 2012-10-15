@@ -23,11 +23,16 @@ public class NumberMode extends SlidingGrid {
          * is the bottom rightmost tile.
          */
         
-        // Hid a button
-        super.hideButton(1, 1);
+        // Hid a button - you'll want to hide either the top left or bottom right button
+        hideButton(1, 1);
         
-        // Put numbers on the rest of the tiles
-        super.setButtonText(1, 2, "12");
+        // Put numbers on the rest of the tiles in the valid winning order
+        setButtonText(1, 2, "12");
+        
+        // Scramble the grid to create a new game for the user. The number passed in is
+        // the number of moves. You might want to play around with this number (high is
+        // more difficult).
+        scrambleGrid(50);
     }
 
     @Override
