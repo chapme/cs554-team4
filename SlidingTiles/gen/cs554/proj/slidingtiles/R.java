@@ -15,7 +15,32 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int menu_settings=0x7f070004;
+        public static final int gb11=0x7f070004;
+        public static final int gb12=0x7f070005;
+        public static final int gb13=0x7f070008;
+        public static final int gb14=0x7f07000d;
+        public static final int gb15=0x7f070014;
+        public static final int gb21=0x7f070006;
+        public static final int gb22=0x7f070007;
+        public static final int gb23=0x7f070009;
+        public static final int gb24=0x7f07000e;
+        public static final int gb25=0x7f070015;
+        public static final int gb31=0x7f07000a;
+        public static final int gb32=0x7f07000b;
+        public static final int gb33=0x7f07000c;
+        public static final int gb34=0x7f07000f;
+        public static final int gb35=0x7f070016;
+        public static final int gb41=0x7f070010;
+        public static final int gb42=0x7f070011;
+        public static final int gb43=0x7f070012;
+        public static final int gb44=0x7f070013;
+        public static final int gb45=0x7f070017;
+        public static final int gb51=0x7f070018;
+        public static final int gb52=0x7f070019;
+        public static final int gb53=0x7f07001a;
+        public static final int gb54=0x7f07001b;
+        public static final int gb55=0x7f07001c;
+        public static final int menu_settings=0x7f07001d;
         public static final int radioGrid2=0x7f070001;
         public static final int radioGrid3=0x7f070002;
         public static final int radioGrid4=0x7f070003;

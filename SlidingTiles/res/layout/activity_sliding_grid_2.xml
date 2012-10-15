@@ -13,9 +13,28 @@
             android:onClick="back" 
             android:layout_alignParentRight="true"/>
     </RelativeLayout>
-    <TextView
-        android:layout_width="wrap_content"
+    <GridLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Size 2 Grid"
-        tools:context=".SlidingGrid" />
+        android:columnCount="2">
+        <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/gb11"
+            android:onClick="processButtonPress"
+            android:text="11" />
+        <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/gb12"
+            android:onClick="processButtonPress"
+            android:text="12" />
+        <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/gb21"
+            android:onClick="processButtonPress"
+            android:text="21" />
+        <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/gb22"
+            android:onClick="processButtonPress"
+            android:text="22" />
+    </GridLayout>
 </LinearLayout>

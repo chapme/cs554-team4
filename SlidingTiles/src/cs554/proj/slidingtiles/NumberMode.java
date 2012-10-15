@@ -13,6 +13,21 @@ public class NumberMode extends SlidingGrid {
         Intent intent = getIntent();
         int gridSize = intent.getIntExtra(SetupNumberGame.GRID_SIZE, 5);
         super.onCreate(savedInstanceState, gridSize);
+        /*
+         * Hi Andrew: Since I haven't commented my code yet, you can delete
+         * this note once you read it. SlidingGrid implements sliding tiles around
+         * with button clicks. All you need to do is in this function set the value 
+         * on each tile and hide the initial button that will be hid. The 
+         * tiles are indexed by row and column (1 counted, not zero counted). 
+         * So the tile at row 1 and column 1 is the top leftmost tile and row 5 column 5
+         * is the bottom rightmost tile.
+         */
+        
+        // Hid a button
+        super.hideButton(1, 1);
+        
+        // Put numbers on the rest of the tiles
+        super.setButtonText(1, 2, "12");
     }
 
     @Override
