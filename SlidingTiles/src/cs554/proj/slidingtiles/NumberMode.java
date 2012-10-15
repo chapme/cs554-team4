@@ -32,7 +32,7 @@ public class NumberMode extends SlidingGrid {
         // Scramble the grid to create a new game for the user. The number passed in is
         // the number of moves. You might want to play around with this number (high is
         // more difficult).
-        scrambleGrid(50);
+        //scrambleGrid(50);
     }
 
     @Override
