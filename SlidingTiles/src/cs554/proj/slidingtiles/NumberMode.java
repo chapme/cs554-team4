@@ -1,5 +1,7 @@
 package cs554.proj.slidingtiles;
 
+import java.util.Random;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -13,26 +15,21 @@ public class NumberMode extends SlidingGrid {
         Intent intent = getIntent();
         int gridSize = intent.getIntExtra(SetupNumberGame.GRID_SIZE, 5);
         super.onCreate(savedInstanceState, gridSize);
-        /*
-         * Hi Andrew: Since I haven't commented my code yet, you can delete
-         * this note once you read it. SlidingGrid implements sliding tiles around
-         * with button clicks. All you need to do is in this function set the value 
-         * on each tile and hide the initial button that will be hid. The 
-         * tiles are indexed by row and column (1 counted, not zero counted). 
-         * So the tile at row 1 and column 1 is the top leftmost tile and row 5 column 5
-         * is the bottom rightmost tile.
-         */
         
-        // Hid a button - you'll want to hide either the top left or bottom right button
-        hideButton(1, 1);
+        // Generate a winning grid
+        generateValidGrid(gridSize);
         
-        // Put numbers on the rest of the tiles in the valid winning order
-        setButtonText(1, 2, "12");
-        
-        // Scramble the grid to create a new game for the user. The number passed in is
-        // the number of moves. You might want to play around with this number (high is
-        // more difficult).
-        //scrambleGrid(50);
+        // Scramble the grid to create a new game for the user. 
+        // Having the number of moves made be the square of the number of tiles
+        // seems to be sufficient to generate a game.
+        if(gridSize == 2)
+        	scrambleGrid(9);
+        else if(gridSize == 3)
+        	scrambleGrid(64);
+        else if(gridSize == 4)
+        	scrambleGrid(225);
+        else
+        	scrambleGrid(576);
     }
 
     @Override
@@ -50,6 +47,39 @@ public class NumberMode extends SlidingGrid {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    
+    /**
+     * Generates a winning grid for the number mode game.
+     * The blank tile will either be in the top left or bottom right location.
+     * The remaining tiles will be numbered 1 to N where N=gridSize*gridSize-1.
+     * 
+     * @param gridSize Size of the grid we're numbering
+     */
+    private void generateValidGrid(int gridSize) {
+    	// Decide at random which button to hide
+    	Random gen = new Random();
+    	int hb = gen.nextInt(2);
+    	int count;
+    	if(hb == 0) {
+    		// Hide the top left. Start the count at 0 so the first visible button
+    		// we label is 1.
+    		hideButton(1,1);
+    		count = 0;
+    	} else {
+    		// Hide the bottom right. Start the count at 1 since the first button is
+    		// visible. The hidden tile will be labeled 25.
+    		hideButton(gridSize, gridSize);
+    		count = 1;
+    	}
+    	
+    	// Label each of the buttons, incrementing count by 1 after each labeling
+    	for(int i = 1; i <= gridSize; i++) {
+    		for(int j = 1; j <= gridSize; j++) {
+    			setButtonText(i, j, Integer.toString(count));
+    			count++;
+    		}
+    	}
     }
 
 }
