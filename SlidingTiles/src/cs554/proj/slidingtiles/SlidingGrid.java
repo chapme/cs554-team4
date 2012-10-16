@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import cs554.proj.slidingtiles.R;
 
 /**
  * @author me
