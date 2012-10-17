@@ -7,8 +7,18 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowManager.LayoutParams;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class NumberMode extends SlidingGrid {
+	/**
+	 * Stores whether or not the user has won the game yet.
+	 * Once the game has been won, the tile buttons are
+	 * disabled so no more moves can be made.
+	 */
+	private boolean won = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,6 +89,79 @@ public class NumberMode extends SlidingGrid {
     			setButtonText(i, j, Integer.toString(count));
     			count++;
     		}
+    	}
+    }
+    
+    /**
+     * Checks whether or not the user has won the game
+     * 
+     * @return True if grid is in a valid layout
+     */
+    private boolean checkForWin() {
+    	// Get the location of the hidden button
+    	int hbLoc[] = getHiddenButtonLocation();
+    	int count;
+    	
+    	// Check where the hidden button is
+    	if((hbLoc[0] == 1) && (hbLoc[1] == 1)) {
+    		// The hidden button is in the top left corner
+    		// We'll start counting on the second tile so 
+    		// set count to 0 so we ignore the first tile
+    		count = 0;
+    	} else if((hbLoc[0] == getGridSize()) && (hbLoc[1] == getGridSize())) {
+    		// The hidden button is in the bottom right corner
+    		// Start counting on 1 for the first tile
+    		count = 1;
+    	} else {
+    		// The hidden button is not at one of the valid locations
+    		// for winning the game so we know the user hasn't won
+    		return false;
+    	}
+    	
+    	// Check the grid and make sure the correct number is on each tile
+    	for(int i = 1; i <= getGridSize(); i++) {
+    		for(int j = 1; j <= getGridSize(); j++) {
+    			if((count != 0) && (count != getGridSize()*getGridSize())) {
+    				if(getButtonText(i,j) != Integer.toString(count)) {
+    					// Wrong number is on the tile, user hasn't won
+    					return false;
+    				}
+    			}
+    			count++;
+    		}
+    	}
+    	
+    	// The user has won!
+    	return true;
+    }
+    
+    /**
+     * Overrides the super class's processing function for button presses. 
+     * We want to check and see after the button press if the grid is in a winning
+     * position
+     * 
+     * @see cs554.proj.slidingtiles.SlidingGrid#processButtonPress(android.view.View)
+     */
+    public void processButtonPress(View view) {
+    	// If the user has already won, ignore button presses so the grid stays in
+    	// the winning layout
+    	if(won == true)
+    		return;
+    	
+    	// Call super function to process move
+    	super.processButtonPress(view);
+    	
+    	// Check if the user has won or not
+    	if(checkForWin()) {
+    		// User won! Add text to screen saying they won and set won to true so
+    		// future button presses on the grid are ignored
+    		LayoutParams lp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+    		TextView tv = new TextView(this);
+    		tv.setText("Winner!");
+    		tv.setVisibility(View.VISIBLE);
+    		View ll = findViewById(R.id.llForPlayingGame);
+    		((LinearLayout) ll).addView(tv);
+    		won = true;
     	}
     }
 

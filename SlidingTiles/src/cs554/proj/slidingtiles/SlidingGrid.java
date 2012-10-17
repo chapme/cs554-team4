@@ -331,4 +331,16 @@ public class SlidingGrid extends Activity {
     		numMoves--;
     	}
     }
+    
+    /**
+     * Get the row and column index of the hidden tile
+     * 
+     * @return Array of two ints, first is row index and the second is column index
+     */
+    public int[] getHiddenButtonLocation() {
+    	int loc[] = new int[2];
+    	loc[0] = hbRow;
+    	loc[1] = hbCol;
+    	return loc;
+    }
 }
