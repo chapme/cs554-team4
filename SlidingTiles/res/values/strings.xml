@@ -6,7 +6,7 @@
     <string name="mmButton">Play the Math Game!</string>
     <string name="nmButton">Play the Number Game!</string>
     <string name="backButton">Back to Main Menu</string>
-    <string name="gridSize">Grid Size</string>
+    <string name="gridSize">Grid Size:</string>
     <string name="radioGrid2">2</string>
     <string name="radioGrid3">3</string>
     <string name="radioGrid4">4</string>
@@ -17,5 +17,12 @@
     <string name="title_activity_number_mode">Number Game</string>
     <string name="startButton">Start</string>
     <string name="title_activity_math_mode">MathMode</string>
+    <string name="playAI">Play Against AI:</string>
+    <string name="aiOn">On</string>
+    <string name="aiOff">Off</string>
+    <string name="aiLevel">Difficulty Level:</string>
+    <string name="ai1">Beginner</string>
+    <string name="ai2">Intermediate</string>
+    <string name="ai3">Advanced</string>
 
 </resources>

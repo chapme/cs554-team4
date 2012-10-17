@@ -12,10 +12,10 @@
             android:onClick="back" 
             android:layout_alignParentRight="true"/>
     </RelativeLayout>
+    
     <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/gridSize"/>
-
     <RadioGroup android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal" 
@@ -24,23 +24,72 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="@string/radioGrid2"
-            android:onClick="onRadioButtonClicked" />
+            android:onClick="onRadioGridButtonClicked" />
         <RadioButton android:id="@+id/radioGrid3"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="@string/radioGrid3"
-            android:onClick="onRadioButtonClicked" />
+            android:onClick="onRadioGridButtonClicked" />
         <RadioButton android:id="@+id/radioGrid4"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="@string/radioGrid4"
-            android:onClick="onRadioButtonClicked" />
+            android:onClick="onRadioGridButtonClicked" />
         <RadioButton android:id="@+id/radioGrid5"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="@string/radioGrid5"
-            android:onClick="onRadioButtonClicked" />
+            android:onClick="onRadioGridButtonClicked" />
     </RadioGroup>
+    
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/playAI"/>
+    <RadioGroup android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:checkedButton="@+id/radioAIOff">
+        <RadioButton android:id="@+id/radioAIOff"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/aiOff"
+            android:onClick="onRadioAIStateClicked" />
+        <RadioButton android:id="@+id/radioAIOn"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/aiOn"
+            android:onClick="onRadioAIStateClicked" 
+            android:enabled="false" />
+    </RadioGroup>
+    
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/aiLevel"
+        android:visibility="gone" 
+        android:id="@+id/aiLevel"/>
+    <RadioGroup android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" 
+        android:checkedButton="@+id/radioAI1"
+        android:visibility="gone"
+        android:id="@+id/aiLevelRadioGrid">
+        <RadioButton android:id="@+id/radioAI1"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/ai1"
+            android:onClick="onRadioAILevelButtonClicked" />
+        <RadioButton android:id="@+id/radioAI2"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/ai2"
+            android:onClick="onRadioAILevelButtonClicked" />
+        <RadioButton android:id="@+id/radioAI3"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/ai3"
+            android:onClick="onRadioAILevelButtonClicked" />
+    </RadioGroup>
+    
     <Button android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/startButton"

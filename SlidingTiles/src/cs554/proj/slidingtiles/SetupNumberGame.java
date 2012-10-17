@@ -6,17 +6,23 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 public class SetupNumberGame extends Activity {
 	/**
 	 * The grid size that is currently selected (5 by default)
 	 */
 	private int gridSize = 5;
+	private boolean aiEnabled = false;
+	private int aiDifficulty = 1;
 	
 	/**
 	 * String used to index info passed to the next activity
 	 */
 	public final static String GRID_SIZE = "cs554.proj.slidingtiles.GRID_SIZE";
+	public final static String AI_ENABLED = "cs554.proj.slidingtiles.AI_ENABLED";
+	public final static String AI_DIFFICULTY = "cs554.proj.slidingtiles.AI_DIFFICULTY";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +50,7 @@ public class SetupNumberGame extends Activity {
      * 
      * @param view
      */
-    public void onRadioButtonClicked(View view) {
+    public void onRadioGridButtonClicked(View view) {
     	// Make sure we're processing a button being selected.
     	// We can safely ignore deselections since another button must have
     	// been selected.
@@ -70,6 +76,63 @@ public class SetupNumberGame extends Activity {
     }
     
     /**
+     * Process radio  button click for turning the AI on and off
+     * 
+     * @param view Selected radio button
+     */
+    public void onRadioAIStateClicked(View view) {
+    	// Make sure we're processing a button being selected.
+    	// We can safely ignore deselections since another button must have
+    	// been selected.
+    	boolean checked = ((RadioButton) view).isChecked();
+    	if(!checked)
+    		return;
+    	
+    	// Check which option was selected
+    	TextView tv = (TextView) findViewById(R.id.aiLevel);
+    	RadioGroup rg = (RadioGroup) findViewById(R.id.aiLevelRadioGrid);
+    	switch(view.getId()) {
+    	case R.id.radioAIOn:
+    		aiEnabled = true;
+    		tv.setVisibility(View.VISIBLE);
+    		rg.setVisibility(View.VISIBLE);
+    		break;
+    	case R.id.radioAIOff:
+    		aiEnabled = false;
+    		tv.setVisibility(View.GONE);
+    		rg.setVisibility(View.GONE);
+    		break;
+    	}
+    }
+    
+    /**
+     * Process radio button clicks for AI level
+     * 
+     * @param view Selected radio button
+     */
+    public void onRadioAILevelButtonClicked(View view) {
+    	// Make sure we're processing a button being selected.
+    	// We can safely ignore deselections since another button must have
+    	// been selected.
+    	boolean checked = ((RadioButton) view).isChecked();
+    	if(!checked)
+    		return;
+    	
+    	// Find out which level was selected
+    	switch(view.getId()) {
+    	case R.id.radioAI1:
+    		aiDifficulty = 1;
+    		break;
+    	case R.id.radioAI2:
+    		aiDifficulty = 2;
+    		break;
+    	case R.id.radioAI3:
+    		aiDifficulty = 3;
+    		break;
+    	}
+    }
+    
+    /**
      * Function for handling the start game button. This will pass the options 
      * selected on to the next activity.
      * 
@@ -80,6 +143,12 @@ public class SetupNumberGame extends Activity {
     	
     	// Pass the grid size
     	intent.putExtra(GRID_SIZE, this.gridSize);
+    	
+    	// Pass if the AI is on or off
+    	intent.putExtra(AI_ENABLED, aiEnabled);
+    	
+    	// Pass AI level
+    	intent.putExtra(AI_DIFFICULTY, aiDifficulty);
     	
     	startActivity(intent);
     }

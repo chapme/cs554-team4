@@ -19,12 +19,26 @@ public class NumberMode extends SlidingGrid {
 	 * disabled so no more moves can be made.
 	 */
 	private boolean won = false;
+	
+	/**
+	 * Stores whether or not the user is playing against an AI
+	 */
+	private boolean aiEnabled = false;
+	
+	/**
+	 * Stores the difficulty level of the AI
+	 */
+	private int aiDifficulty = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
         int gridSize = intent.getIntExtra(SetupNumberGame.GRID_SIZE, 5);
         super.onCreate(savedInstanceState, gridSize);
+        
+        // Get the AI settings
+        aiEnabled = intent.getBooleanExtra(SetupNumberGame.AI_ENABLED, false);
+        aiDifficulty = intent.getIntExtra(SetupNumberGame.AI_DIFFICULTY, 1);
         
         // Generate a winning grid
         generateValidGrid(gridSize);
@@ -159,8 +173,9 @@ public class NumberMode extends SlidingGrid {
     		TextView tv = new TextView(this);
     		tv.setText("Winner!");
     		tv.setVisibility(View.VISIBLE);
-    		View ll = findViewById(R.id.llForPlayingGame);
-    		((LinearLayout) ll).addView(tv);
+    		tv.setLayoutParams(lp);
+    		LinearLayout ll = (LinearLayout) findViewById(R.id.llForPlayingGame);
+    		ll.addView(tv);
     		won = true;
     	}
     }
