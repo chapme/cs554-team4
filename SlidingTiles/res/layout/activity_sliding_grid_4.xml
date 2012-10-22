@@ -98,4 +98,17 @@
             android:onClick="processButtonPress"
             android:text="44" />
     </GridLayout>
+    
+    <TextView android:id="@+id/userTextArea"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:padding="10dip"
+        android:text=""/>
+    
+    <ViewStub android:id="@+id/ai_stub"
+        android:inflatedId="@+id/aiUI"
+        android:layout="@layout/activity_ai_sliding_grid_4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom" />
 </LinearLayout>

@@ -8,6 +8,7 @@ import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewStub;
 import android.view.WindowManager.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -38,6 +39,10 @@ public class NumberMode extends SlidingGrid {
         
         // Get the AI settings
         aiEnabled = intent.getBooleanExtra(SetupNumberGame.AI_ENABLED, false);
+        if(aiEnabled) {
+        	// Show AI grid
+        	((ViewStub) findViewById(R.id.ai_stub)).setVisibility(View.VISIBLE);
+        }
         aiDifficulty = intent.getIntExtra(SetupNumberGame.AI_DIFFICULTY, 1);
         
         // Generate a winning grid
@@ -169,13 +174,8 @@ public class NumberMode extends SlidingGrid {
     	if(checkForWin()) {
     		// User won! Add text to screen saying they won and set won to true so
     		// future button presses on the grid are ignored
-    		LayoutParams lp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-    		TextView tv = new TextView(this);
+    		TextView tv = (TextView) findViewById(R.id.userTextArea);
     		tv.setText("Winner!");
-    		tv.setVisibility(View.VISIBLE);
-    		tv.setLayoutParams(lp);
-    		LinearLayout ll = (LinearLayout) findViewById(R.id.llForPlayingGame);
-    		ll.addView(tv);
     		won = true;
     	}
     }

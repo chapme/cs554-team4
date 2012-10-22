@@ -24,5 +24,6 @@
     <string name="ai1">Beginner</string>
     <string name="ai2">Intermediate</string>
     <string name="ai3">Advanced</string>
+    <string name="aiLabel">AI\'s Grid:</string>
 
 </resources>
