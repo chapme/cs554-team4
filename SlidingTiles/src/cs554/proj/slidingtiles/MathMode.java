@@ -23,6 +23,9 @@ import android.widget.TextView;
  */
 public class MathMode extends SlidingGrid {
 
+	/**
+	 * Gesture detector for swipes across the user grid
+	 */
 	private GestureDetector gDetector;
 	
     /**
@@ -38,7 +41,11 @@ public class MathMode extends SlidingGrid {
         generateGame();
         userGrid.scrambleGrid(25);
         
+        // Create the gesture detector for swipes across the user grid
         gDetector = new GestureDetector(this.getApplicationContext(), new GesturesForMathMode());
+        
+        // Tell the linear layout containing the user grid to pass swipe events to our
+        // gesture detector algorithm
         View v = findViewById(R.id.llForPlayingGame);
         v.setOnTouchListener(new View.OnTouchListener() {
 			
@@ -48,6 +55,10 @@ public class MathMode extends SlidingGrid {
 				return false;
 			}
 		});
+        
+        // Have each button pass the motion event to the gesture detector to see if
+        // it was a swipe that just started on a button. Otherwise process button
+        // press
         for(int i = 1; i <= userGrid.getGridSize(); i++) {
         	for(int j = 1; j <= userGrid.getGridSize(); j++) {
                 Button b = (Button) findViewById(userGrid.getButtonID(i, j));
@@ -214,44 +225,95 @@ public class MathMode extends SlidingGrid {
     	}
     }
     
+    /**
+     * Checks if the tiles swipped over form a valid equation
+     * 
+     * @param tileTexts The text on each tile in LR or TB order
+     * @return True if equation is valid, false otherwise
+     */
     private boolean validateEquation(String[] tileTexts) {
+    	//TODO
     	return true;
     }
     
+    /**
+     * Extends necessary functions to detect swipes over user grid and process
+     * the swipped equation
+     * 
+     * @author me
+     *
+     */
     class GesturesForMathMode extends SimpleOnGestureListener {
+    	/**
+    	 * Need to return true so swipe function is called
+    	 * 
+    	 * @param me The event to process
+    	 * @return True
+    	 */
     	@Override
     	public boolean onDown(MotionEvent me) {
     		return true;
     	}
     	
+    	/**
+    	 * Process the user's swipe to see if it was across a single row or column on
+    	 * the grid. Swipes across multiple rows and columns are ignored. If it was a 
+    	 * valid swipe, process the tiles swipped across.
+    	 * 
+    	 * @param start Where the swipe started
+    	 * @param finish Where the swipe ended
+    	 * @param xVelocity
+    	 * @param yVelocity
+    	 * @return True if this was a swipe across a single row or column, false otherwise
+    	 */
     	@Override
     	public boolean onFling(MotionEvent start, MotionEvent finish, float xVelocity, float yVelocity) {
+    		// Stores which row or column was swipped across
     		int row = -1;
     		int col = -1;
+    		
+    		// Starting coordinates of the swipe
     		float sx = start.getRawX();
     		float sy = start.getRawY();
+    		
+    		// Ending coordinates of the swipe 
     		float ex = finish.getRawX();
     		float ey = finish.getRawY();
     	
+    		// Check and see if swipe was down a column
     		for(int i = 1; i <= userGrid.getGridSize(); i++) {
+    			// Get the width of column i
     			Button b = (Button) findViewById(userGrid.getButtonID(1, i));
     			Rect r = new Rect();
     			b.getGlobalVisibleRect(r);
+    			
+    			// Check and see if swipe stayed within this column
     			if((r.left <= sx) && (sx <= r.right) && (r.left <= ex) && (ex <= r.right))
     				col = i;
     		}
     		
+    		// Check if swipe was across a row
     		for(int i = 1; i <= userGrid.getGridSize(); i++) {
+    			// Get the height of row i
     			Button b = (Button) findViewById(userGrid.getButtonID(i,1));
     			Rect r = new Rect();
     			b.getGlobalVisibleRect(r);
+    			
+    			// Check and see if swipe stayed within this row 
     			if((r.top <= sy) && (sy <= r.bottom) && (r.top <= ey) && (ey <= r.bottom))
     				row = i;
     		}
     		
+    		// Make sure swipe stayed within a row or column
     		if((row == -1) && (col == -1))
     			return false;
     		
+    		// Make sure hidden button isn't in swipe
+    		int[] hbloc = userGrid.getHiddenButtonLocation();
+    		if((hbloc[0] == row) || (hbloc[1] == col))
+    			return true;
+    		
+    		// Get the text from the tiles swiped across
     		String[] tileTexts = new String[userGrid.getGridSize()];
     		for(int i = 1; i <= userGrid.getGridSize(); i++) {
     			if(row != -1)
@@ -260,7 +322,9 @@ public class MathMode extends SlidingGrid {
     				tileTexts[i-1] = userGrid.getButtonText(i, col);
     		}
     	
+    		// Check if we have a valid equation
     		if(validateEquation(tileTexts)) {
+    			// Add equation to screen
     			TextView tv = (TextView) findViewById(R.id.userTextArea);
     			String currentText = (String) tv.getText();
     			currentText += "\n";
