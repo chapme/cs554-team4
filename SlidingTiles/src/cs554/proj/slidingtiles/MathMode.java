@@ -25,7 +25,7 @@ public class MathMode extends SlidingGrid {
         // Generate a valid game layout and then scramble the grid so the
         // user can play.
         generateGame();
-        scrambleGrid(25);
+        userGrid.scrambleGrid(25);
     }
 
     @Override
@@ -56,11 +56,11 @@ public class MathMode extends SlidingGrid {
      * @param v5 The value for the fifth tile in the row
      */
     private void setRow(int index, String v1, String v2, String v3, String v4, String v5) {
-    	setButtonText(index, 1, v1);
-		setButtonText(index, 2, v2);
-		setButtonText(index, 3, v3);
-		setButtonText(index, 4, v4);
-		setButtonText(index, 5, v5);
+    	userGrid.setButtonText(index, 1, v1);
+    	userGrid.setButtonText(index, 2, v2);
+    	userGrid.setButtonText(index, 3, v3);
+    	userGrid.setButtonText(index, 4, v4);
+    	userGrid.setButtonText(index, 5, v5);
     }
     
     /**
@@ -74,11 +74,11 @@ public class MathMode extends SlidingGrid {
      * @param v5 Value for the fifth tile
      */
     private void setCol(int index, String v1, String v2, String v3, String v4, String v5) {
-    	setButtonText(1, index, v1);
-    	setButtonText(2, index, v2);
-    	setButtonText(3, index, v3);
-    	setButtonText(4, index, v4);
-    	setButtonText(5, index, v5);
+    	userGrid.setButtonText(1, index, v1);
+    	userGrid.setButtonText(2, index, v2);
+    	userGrid.setButtonText(3, index, v3);
+    	userGrid.setButtonText(4, index, v4);
+    	userGrid.setButtonText(5, index, v5);
     }
     
     
@@ -112,7 +112,7 @@ public class MathMode extends SlidingGrid {
     	// Whether we go across a row or down a column
     	int dir = gen.nextInt(2);
     	// Which row or column we'll use
-    	int index = gen.nextInt(getGridSize())+1;
+    	int index = gen.nextInt(userGrid.getGridSize())+1;
     	// Will the equals sign be on the second or fourth tile
     	int eqLoc = gen.nextInt(2);
     	// The first number used
@@ -149,17 +149,17 @@ public class MathMode extends SlidingGrid {
     		else
     			setRow(index, Integer.toString(k), "=", Integer.toString(i), op, Integer.toString(j));
     		//Fill out the rest of the grid
-    		for(int x = 1; x <= getGridSize(); x++) {
+    		for(int x = 1; x <= userGrid.getGridSize(); x++) {
     			if(x == index)
     				continue;
     			setRow(x, generateTile(), generateTile(), generateTile(), generateTile(), generateTile());
     		}
     		// Choose which button to hide
-    		int hr = gen.nextInt(getGridSize()-1)+1;
+    		int hr = gen.nextInt(userGrid.getGridSize()-1)+1;
     		if(hr >= index)
     			hr++;
-    		int hc = gen.nextInt(getGridSize())+1;
-    		hideButton(hr, hc);
+    		int hc = gen.nextInt(userGrid.getGridSize())+1;
+    		userGrid.hideButton(hr, hc);
     	} else {
     		// We're filling out a column. Fill out equation based on location of equals sign
     		if(eqLoc == 0)
@@ -167,17 +167,17 @@ public class MathMode extends SlidingGrid {
     		else
     			setCol(index, Integer.toString(k), "=", Integer.toString(i), op, Integer.toString(j));
     		// Fill out the rest of the grid
-    		for(int x = 1; x <= getGridSize(); x++) {
+    		for(int x = 1; x <= userGrid.getGridSize(); x++) {
     			if(x == index)
     				continue;
     			setCol(x, generateTile(), generateTile(), generateTile(), generateTile(), generateTile());
     		}
     		// Choose a button to hide
-    		int hr = gen.nextInt(getGridSize())+1;
-    		int hc = gen.nextInt(getGridSize()-1)+1;
+    		int hr = gen.nextInt(userGrid.getGridSize())+1;
+    		int hc = gen.nextInt(userGrid.getGridSize()-1)+1;
     		if(hc >= index)
     			hc++;
-    		hideButton(hr, hc);
+    		userGrid.hideButton(hr, hc);
     	}
     }
 
