@@ -1,10 +1,18 @@
 package cs554.proj.slidingtiles;
 
+import java.util.Random;
+
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.view.GestureDetector;
+import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v4.app.NavUtils;
-import java.util.Random;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * @author me
@@ -15,6 +23,8 @@ import java.util.Random;
  */
 public class MathMode extends SlidingGrid {
 
+	private GestureDetector gDetector;
+	
     /**
      * Generate a valid grid for the math mode game
      * 
@@ -27,6 +37,28 @@ public class MathMode extends SlidingGrid {
         // user can play.
         generateGame();
         userGrid.scrambleGrid(25);
+        
+        gDetector = new GestureDetector(this.getApplicationContext(), new GesturesForMathMode());
+        View v = findViewById(R.id.llForPlayingGame);
+        v.setOnTouchListener(new View.OnTouchListener() {
+			
+			public boolean onTouch(View v, MotionEvent event) {
+				if(gDetector.onTouchEvent(event))
+					return true;
+				return false;
+			}
+		});
+        for(int i = 1; i <= userGrid.getGridSize(); i++) {
+        	for(int j = 1; j <= userGrid.getGridSize(); j++) {
+                Button b = (Button) findViewById(userGrid.getButtonID(i, j));
+                b.setOnTouchListener(new View.OnTouchListener() {
+                	public boolean onTouch(View v, MotionEvent event) {
+                		gDetector.onTouchEvent(event);
+                		return false;
+                	}
+                });
+        	}
+        }
     }
 
     @Override
@@ -179,6 +211,65 @@ public class MathMode extends SlidingGrid {
     		if(hc >= index)
     			hc++;
     		userGrid.hideButton(hr, hc);
+    	}
+    }
+    
+    private boolean validateEquation(String[] tileTexts) {
+    	return true;
+    }
+    
+    class GesturesForMathMode extends SimpleOnGestureListener {
+    	@Override
+    	public boolean onDown(MotionEvent me) {
+    		return true;
+    	}
+    	
+    	@Override
+    	public boolean onFling(MotionEvent start, MotionEvent finish, float xVelocity, float yVelocity) {
+    		int row = -1;
+    		int col = -1;
+    		float sx = start.getRawX();
+    		float sy = start.getRawY();
+    		float ex = finish.getRawX();
+    		float ey = finish.getRawY();
+    	
+    		for(int i = 1; i <= userGrid.getGridSize(); i++) {
+    			Button b = (Button) findViewById(userGrid.getButtonID(1, i));
+    			Rect r = new Rect();
+    			b.getGlobalVisibleRect(r);
+    			if((r.left <= sx) && (sx <= r.right) && (r.left <= ex) && (ex <= r.right))
+    				col = i;
+    		}
+    		
+    		for(int i = 1; i <= userGrid.getGridSize(); i++) {
+    			Button b = (Button) findViewById(userGrid.getButtonID(i,1));
+    			Rect r = new Rect();
+    			b.getGlobalVisibleRect(r);
+    			if((r.top <= sy) && (sy <= r.bottom) && (r.top <= ey) && (ey <= r.bottom))
+    				row = i;
+    		}
+    		
+    		if((row == -1) && (col == -1))
+    			return false;
+    		
+    		String[] tileTexts = new String[userGrid.getGridSize()];
+    		for(int i = 1; i <= userGrid.getGridSize(); i++) {
+    			if(row != -1)
+    				tileTexts[i-1] = userGrid.getButtonText(row, i);
+    			else
+    				tileTexts[i-1] = userGrid.getButtonText(i, col);
+    		}
+    	
+    		if(validateEquation(tileTexts)) {
+    			TextView tv = (TextView) findViewById(R.id.userTextArea);
+    			String currentText = (String) tv.getText();
+    			currentText += "\n";
+    			for(int i = 0; i < tileTexts.length; i++)
+    				currentText += tileTexts[i];
+    			tv.setText(currentText);
+    		}
+    		
+    		return true;
     	}
     }
 
