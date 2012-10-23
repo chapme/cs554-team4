@@ -9,11 +9,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewStub;
-import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
+/**
+ * NumberMode implements the support functions needed for the number mode version
+ * of the sliding grid game.
+ * 
+ * @author me
+ *
+ */
 public class NumberMode extends SlidingGrid {
 	/**
 	 * Stores whether or not the user has won the game yet.
@@ -32,8 +37,17 @@ public class NumberMode extends SlidingGrid {
 	 */
 	private int aiDifficulty = 1;
 	
+	/**
+	 * The AI's grid
+	 */
 	private Grid aiGrid;
 
+    /** 
+     * Get the user options from the setup page and generate the game type requested
+     * by the user.
+     * 
+     * @see cs554.proj.slidingtiles.SlidingGrid#onCreate(android.os.Bundle, int)
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
@@ -62,14 +76,20 @@ public class NumberMode extends SlidingGrid {
         	// Show AI grid
         	((ViewStub) findViewById(R.id.ai_stub)).setVisibility(View.VISIBLE);
 
+        	// Set up the AI grid with the button IDs and the Button objects from
+        	// the UI
         	int[][] ids = {{R.id.gbAI11, R.id.gbAI12, R.id.gbAI13, R.id.gbAI14, R.id.gbAI15},{R.id.gbAI21, R.id.gbAI22, R.id.gbAI23, R.id.gbAI24, R.id.gbAI25},{R.id.gbAI31, R.id.gbAI32, R.id.gbAI33, R.id.gbAI34, R.id.gbAI35},{R.id.gbAI41, R.id.gbAI42, R.id.gbAI43, R.id.gbAI44, R.id.gbAI45},{R.id.gbAI51, R.id.gbAI52, R.id.gbAI53, R.id.gbAI54, R.id.gbAI55}};
         	Button[][] buttons = new Button[maxSize][maxSize];
         	for(int i = 0; i < maxSize; i++)
         		for(int j = 0; j < maxSize; j++)
         			buttons[i][j] = (Button) findViewById(ids[i][j]);
         	aiGrid = new Grid(gridSize, ids, buttons);
+        	
+        	// Copy the user grid so both grids start with the same layout
         	aiGrid.copyGrid(userGrid);
         }
+        
+        // Get the difficulty level for the AI
         aiDifficulty = intent.getIntExtra(SetupNumberGame.AI_DIFFICULTY, 1);
     }
 

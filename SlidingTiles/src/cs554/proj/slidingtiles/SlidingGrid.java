@@ -1,7 +1,5 @@
 package cs554.proj.slidingtiles;
 
-import java.util.Random;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,16 +15,19 @@ import cs554.proj.slidingtiles.R;
  */
 public class SlidingGrid extends Activity {	
 	/**
-	 * The maximum grid size we'll generate
+	 * The maximum grid size we'll generate. Public so other classes have this info.
 	 */
 	public static int maxSize = 5;
 	
+	/**
+	 * Grid for the user game. Public member so child classes can set up grid.
+	 */
 	public Grid userGrid;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sliding_grid_5);
+        onCreate(savedInstanceState, maxSize);
     }
     
     /**
@@ -46,6 +47,7 @@ public class SlidingGrid extends Activity {
     	else
     		setContentView(R.layout.activity_sliding_grid_5);
     	
+    	// Set up user grid with button IDs and Button objects from the UI
     	int[][] ids = {{R.id.gb11, R.id.gb12, R.id.gb13, R.id.gb14, R.id.gb15},{R.id.gb21, R.id.gb22, R.id.gb23, R.id.gb24, R.id.gb25},{R.id.gb31, R.id.gb32, R.id.gb33, R.id.gb34, R.id.gb35},{R.id.gb41, R.id.gb42, R.id.gb43, R.id.gb44, R.id.gb45},{R.id.gb51, R.id.gb52, R.id.gb53, R.id.gb54, R.id.gb55}};
     	Button[][] buttons = new Button[maxSize][maxSize];
     	for(int i = 0; i < maxSize; i++)

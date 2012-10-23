@@ -5,15 +5,53 @@ import java.util.Random;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * This class abstracts the grid UI. This can be used to represent either the user's
+ * grid or the AI's grid depending on what information is sent via the constructor. 
+ * Row and column numbers are 1 counted.
+ * 
+ * @author me
+ *
+ */
 public class Grid {
+	/**
+	 * Matrix of the grid button IDs as laid out in the UI
+	 */
 	private int[][] gbIDs;
+	
+	/**
+	 * Size of the grid (2, 3, 4, or 5)
+	 */
 	private int gridSize;
+	
+	/**
+	 * Matrix of the Button objects as laid out in the UI
+	 */
 	private Button[][] gbButtons;
+	
+	
+	/**
+	 * Row of the hidden button (1 counted)
+	 */
 	int hbRow = -1;
+	
+	/**
+	 * Column of the hidden button (1 counted)
+	 */
 	int hbCol = -1;
 	
+	/**
+	 * Set up the grid with the IDs and objects used in the UI
+	 * 
+	 * @param size Grid size (2, 3, 4 or 5)
+	 * @param ids Button IDs used in the UI
+	 * @param buttons Button objects created by the UI
+	 */
 	public Grid(int size, int[][] ids, Button[][] buttons) {
+		// Set grid size
 		gridSize = size;
+		
+		// Copy the IDs and objects into the class
 		gbIDs = new int[size][size];
 		gbButtons = new Button[size][size];
 		for(int i = 0; i < size; i++) {
@@ -47,6 +85,13 @@ public class Grid {
     	return true;
     }
     
+    /**
+     * Returns the button ID that corresponds to that particular row and column
+     * 
+     * @param row Row in question (1 counted)
+     * @param col Column in question (1 counted)
+     * @return -1 if indices are out of bounds, button ID otherwise
+     */
     public int getButtonID(int row, int col) {
     	if(!checkBounds(row, col))
     		return -1;
@@ -273,10 +318,19 @@ public class Grid {
     	return loc;
     }
 	
+	/**
+	 * Copies one grid to another. The hidden button will be in the same location and 
+	 * the tiles will have the same text. Both grids have to be the same size.
+	 * 
+	 * @param g Grid to copy from
+	 * @return True if the grid was successfully copied, false otherwise
+	 */
 	public boolean copyGrid(Grid g) {
+		// Make sure the grids are the same size
 		if(g.getGridSize() != gridSize)
 			return false;
 		
+		// Copy tile value
 		for(int i = 0; i < gridSize; i++) {
 			for(int j = 0; j < gridSize; j++) {
 				Button b = (Button) gbButtons[i][j];
@@ -284,6 +338,7 @@ public class Grid {
 			}
 		}
 		
+		// Hide the same button
 		int[] hbLoc = g.getHiddenButtonLocation();
 		hideButton(hbLoc[0], hbLoc[1]);
 		

@@ -13,12 +13,13 @@ import java.util.Random;
  * sliding tiles. This class contains all of the support functions needed for this
  * mode.
  */
-/**
- * @author me
- *
- */
 public class MathMode extends SlidingGrid {
 
+    /**
+     * Generate a valid grid for the math mode game
+     * 
+     * @see cs554.proj.slidingtiles.SlidingGrid#onCreate(android.os.Bundle)
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, 5);
