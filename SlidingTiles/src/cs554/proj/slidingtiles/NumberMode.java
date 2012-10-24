@@ -148,9 +148,9 @@ public class NumberMode extends SlidingGrid {
      * 
      * @return True if grid is in a valid layout
      */
-    private boolean checkForWin() {
+    private boolean checkForWin(Grid grid) {
     	// Get the location of the hidden button
-    	int hbLoc[] = userGrid.getHiddenButtonLocation();
+    	int hbLoc[] = grid.getHiddenButtonLocation();
     	int count;
     	
     	// Check where the hidden button is
@@ -159,7 +159,7 @@ public class NumberMode extends SlidingGrid {
     		// We'll start counting on the second tile so 
     		// set count to 0 so we ignore the first tile
     		count = 0;
-    	} else if((hbLoc[0] == userGrid.getGridSize()) && (hbLoc[1] == userGrid.getGridSize())) {
+    	} else if((hbLoc[0] == grid.getGridSize()) && (hbLoc[1] == grid.getGridSize())) {
     		// The hidden button is in the bottom right corner
     		// Start counting on 1 for the first tile
     		count = 1;
@@ -170,11 +170,11 @@ public class NumberMode extends SlidingGrid {
     	}
     	
     	// Check the grid and make sure the correct number is on each tile
-    	for(int i = 1; i <= userGrid.getGridSize(); i++) {
-    		for(int j = 1; j <= userGrid.getGridSize(); j++) {
-    			if((count != 0) && (count != userGrid.getGridSize()*userGrid.getGridSize())) {
-    				if(userGrid.getButtonText(i,j) != Integer.toString(count)) {
-    					// Wrong number is on the tile, user hasn't won
+    	for(int i = 1; i <= grid.getGridSize(); i++) {
+    		for(int j = 1; j <= grid.getGridSize(); j++) {
+    			if((count != 0) && (count != grid.getGridSize()*grid.getGridSize())) {
+    				if(grid.getButtonText(i,j) != Integer.toString(count)) {
+    					// Wrong number is on the tile, no win
     					return false;
     				}
     			}
@@ -182,7 +182,7 @@ public class NumberMode extends SlidingGrid {
     		}
     	}
     	
-    	// The user has won!
+    	// Winn!
     	return true;
     }
     
@@ -203,7 +203,7 @@ public class NumberMode extends SlidingGrid {
     	super.processButtonPress(view);
     	
     	// Check if the user has won or not
-    	if(checkForWin()) {
+    	if(checkForWin(userGrid)) {
     		// User won! Add text to screen saying they won and set won to true so
     		// future button presses on the grid are ignored
     		TextView tv = (TextView) findViewById(R.id.userTextArea);

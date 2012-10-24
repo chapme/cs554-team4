@@ -1,0 +1,14 @@
+package cs554.proj.slidingtiles.test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class TestGrid {
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}
