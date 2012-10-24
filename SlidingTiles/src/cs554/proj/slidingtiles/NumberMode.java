@@ -87,6 +87,9 @@ public class NumberMode extends SlidingGrid {
         	
         	// Copy the user grid so both grids start with the same layout
         	aiGrid.copyGrid(userGrid);
+        	
+        	// Start the AI
+        	(new Thread(new NumberModeAI(aiGrid, this, aiDifficulty))).start();
         }
         
         // Get the difficulty level for the AI
@@ -148,7 +151,7 @@ public class NumberMode extends SlidingGrid {
      * 
      * @return True if grid is in a valid layout
      */
-    private boolean checkForWin(Grid grid) {
+    public boolean checkForWin(Grid grid) {
     	// Get the location of the hidden button
     	int hbLoc[] = grid.getHiddenButtonLocation();
     	int count;
@@ -196,7 +199,7 @@ public class NumberMode extends SlidingGrid {
     public void processButtonPress(View view) {
     	// If the user has already won, ignore button presses so the grid stays in
     	// the winning layout
-    	if(won == true)
+    	if(getWon() == true)
     		return;
     	
     	// Call super function to process move
@@ -208,7 +211,25 @@ public class NumberMode extends SlidingGrid {
     		// future button presses on the grid are ignored
     		TextView tv = (TextView) findViewById(R.id.userTextArea);
     		tv.setText("Winner!");
-    		won = true;
+    		setWon(true);
     	}
+    }
+    
+    /**
+     * Synchronize access to game state across threads
+     * 
+     * @return Whether the game has been won or not
+     */
+    public synchronized boolean getWon() {
+    	return won;
+    }
+    
+    /**
+     * Synchronize setting the game state across threads
+     * 
+     * @param b True if the game has been won, false otherwise
+     */
+    public synchronized void setWon(boolean b) {
+    	won = b;
     }
 }

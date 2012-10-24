@@ -230,6 +230,10 @@ public class Grid {
      * @param col Column index of the button that was pressed
      */
     public void processButtonPress(int row, int col) {
+    	// Ignore the AI pressing on the hidden button
+    	if((row == hbRow) && (col == hbCol))
+    		return;
+    	
     	// Check if row or column matches
     	if(row == hbRow) {
     		// Check if we're shifting right or shifting left in the row
