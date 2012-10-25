@@ -1,5 +1,6 @@
 package cs554.proj.slidingtiles;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import android.graphics.Rect;
@@ -28,6 +29,9 @@ public class MathMode extends SlidingGrid {
 	 */
 	private GestureDetector gDetector;
 	
+	private int points = 0;
+	private ArrayList<String> formattedEquations;
+	
     /**
      * Generate a valid grid for the math mode game
      * 
@@ -40,6 +44,9 @@ public class MathMode extends SlidingGrid {
         // user can play.
         generateGame();
         userGrid.scrambleGrid(25);
+        
+        // Initialize formattedEquations
+        formattedEquations = new ArrayList<String>();
         
         // Create the gesture detector for swipes across the user grid
         gDetector = new GestureDetector(this.getApplicationContext(), new GesturesForMathMode());
@@ -232,7 +239,60 @@ public class MathMode extends SlidingGrid {
      * @return True if equation is valid, false otherwise
      */
     private boolean validateEquation(String[] tileTexts) {
-    	//TODO
+    	int v1 = -1, v2 = -1, v3 = -1;
+    	
+		String equation = "";
+		int eqPoints = 0;
+    	
+    	try {
+    		v1 = Integer.parseInt(tileTexts[0]);
+    		v2 = Integer.parseInt(tileTexts[2]);
+    		v3 = Integer.parseInt(tileTexts[4]);
+    	} catch(NumberFormatException e) {
+    		return false;
+    	}
+    	if((v1 == -1) || (v2 == -1) || (v3 == -1))
+    		return false;
+    	
+    	if(tileTexts[1].equals("=")) {
+    		if(tileTexts[3].equals("+") && (v1 == v2 + v3)) {
+    			equation = Integer.toString(v2) + "+" + Integer.toString(v3) + "=" + Integer.toString(v1);
+    			eqPoints = v1;
+    		} else if(tileTexts[3].equals("-") && (v1 == v2 - v3)) {
+    			equation = Integer.toString(v2) + "-" + Integer.toString(v3) + "=" + Integer.toString(v1);
+    			eqPoints = v1;
+    		} else if(tileTexts[3].equals("x") && (v1 == v2 * v3)) {
+    			equation = Integer.toString(v2) + "x" + Integer.toString(v3) + "=" + Integer.toString(v1);
+    			eqPoints = v1;
+    		} else {
+    			return false;
+    		}
+    	} else if(tileTexts[3].equals("=")) {
+    		if(tileTexts[1].equals("+") && (v1 + v2 == v3)) {
+    			equation = Integer.toString(v1) + "+" + Integer.toString(v2) + "=" + Integer.toString(v3);
+    			eqPoints = v3;
+    		} else if(tileTexts[1].equals("-") && (v1 - v2 == v3)) {
+    			equation = Integer.toString(v1) + "-" + Integer.toString(v2) + "=" + Integer.toString(v3);
+    			eqPoints = v3;
+    		} else if(tileTexts[1].equals("x") && (v1 * v2 == v3)) {
+    			equation = Integer.toString(v1) + "x" + Integer.toString(v2) + "=" + Integer.toString(v3);
+    			eqPoints = v3;
+    		} else {
+    			return false;
+    		}
+    	} else {
+    		return false;
+    	}
+    	
+    	for(int i = 0; i < formattedEquations.size(); i++) {
+    		if(formattedEquations.get(i).equals(equation)) {
+    			return false;
+    		}
+    	}
+    	
+    	formattedEquations.add(equation);
+    	points += eqPoints;
+    	
     	return true;
     }
     
@@ -327,9 +387,7 @@ public class MathMode extends SlidingGrid {
     			// Add equation to screen
     			TextView tv = (TextView) findViewById(R.id.userTextArea);
     			String currentText = (String) tv.getText();
-    			currentText += "\n";
-    			for(int i = 0; i < tileTexts.length; i++)
-    				currentText += tileTexts[i];
+    			currentText += formattedEquations.get(formattedEquations.size()-1) + "\n";
     			tv.setText(currentText);
     		}
     		
