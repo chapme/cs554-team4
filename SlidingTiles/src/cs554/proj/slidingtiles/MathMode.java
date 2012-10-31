@@ -238,7 +238,7 @@ public class MathMode extends SlidingGrid {
      * @param tileTexts The text on each tile in LR or TB order
      * @return True if equation is valid, false otherwise
      */
-    private boolean validateEquation(String[] tileTexts) {
+    public boolean validateEquation(String[] tileTexts) {
     	int v1 = -1, v2 = -1, v3 = -1;
     	
 		String equation = "";

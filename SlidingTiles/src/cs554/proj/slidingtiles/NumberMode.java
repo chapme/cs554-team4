@@ -176,7 +176,7 @@ public class NumberMode extends SlidingGrid {
     	for(int i = 1; i <= grid.getGridSize(); i++) {
     		for(int j = 1; j <= grid.getGridSize(); j++) {
     			if((count != 0) && (count != grid.getGridSize()*grid.getGridSize())) {
-    				if(grid.getButtonText(i,j) != Integer.toString(count)) {
+    				if(!grid.getButtonText(i,j).equals(Integer.toString(count))) {
     					// Wrong number is on the tile, no win
     					return false;
     				}
