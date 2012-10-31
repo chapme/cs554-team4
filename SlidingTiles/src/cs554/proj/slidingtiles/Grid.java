@@ -33,12 +33,12 @@ public class Grid {
 	/**
 	 * Row of the hidden button (1 counted)
 	 */
-	int hbRow = -1;
+	private int hbRow = -1;
 	
 	/**
 	 * Column of the hidden button (1 counted)
 	 */
-	int hbCol = -1;
+	private int hbCol = -1;
 	
 	/**
 	 * Set up the grid with the IDs and objects used in the UI
@@ -230,6 +230,10 @@ public class Grid {
      * @param col Column index of the button that was pressed
      */
     public void processButtonPress(int row, int col) {
+    	// Make sure button is within grid
+    	if(!checkBounds(row, col))
+    		return;
+    	
     	// Ignore the AI pressing on the hidden button
     	if((row == hbRow) && (col == hbCol))
     		return;
