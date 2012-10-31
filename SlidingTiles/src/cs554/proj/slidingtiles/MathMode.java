@@ -48,6 +48,10 @@ public class MathMode extends SlidingGrid {
         // Initialize formattedEquations
         formattedEquations = new ArrayList<String>();
         
+        // Make points visible
+        TextView tv = (TextView) findViewById(R.id.pointsTextArea);
+        tv.setVisibility(View.VISIBLE);
+        
         // Create the gesture detector for swipes across the user grid
         gDetector = new GestureDetector(this.getApplicationContext(), new GesturesForMathMode());
         
@@ -389,6 +393,11 @@ public class MathMode extends SlidingGrid {
     			String currentText = (String) tv.getText();
     			currentText += formattedEquations.get(formattedEquations.size()-1) + "\n";
     			tv.setText(currentText);
+    			
+    			// Update points
+    			tv = (TextView) findViewById(R.id.pointsTextArea);
+    			String text = "Points: " + points;
+    			tv.setText(text);
     		}
     		
     		return true;

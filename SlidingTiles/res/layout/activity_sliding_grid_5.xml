@@ -144,6 +144,13 @@
             android:text="55" />
     </GridLayout>
     
+    <TextView android:id="@+id/pointsTextArea"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dip"
+        android:text="Points: 0"
+        android:visibility="gone" />
+    
     <TextView android:id="@+id/userTextArea"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" 
