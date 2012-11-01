@@ -40,7 +40,7 @@ public class NumberMode extends SlidingGrid {
 	/**
 	 * The AI's grid
 	 */
-	private Grid aiGrid;
+	public Grid aiGrid;
 
     /** 
      * Get the user options from the setup page and generate the game type requested

@@ -1,7 +1,6 @@
 package cs554.proj.slidingtiles.test;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.TouchUtils;
 import android.view.View;
