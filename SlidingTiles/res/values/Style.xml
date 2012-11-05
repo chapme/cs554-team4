@@ -9,9 +9,11 @@
       <item name="android:layout_width">40dp</item>
       <item name="android:padding">0dp</item>
       <item name="android:layout_margin">0dp</item>
+      <item name="android:background">@drawable/tilebackground</item>
   </style>
   <style name="GridButtonAI" parent="@style/GridButton">
       <item name="android:layout_height">30dp</item>
-      <item name="android:layout_width">30dp</item>      
+      <item name="android:layout_width">30dp</item> 
+      <item name="android:background">@drawable/tilebackground</item>     
   </style>
 </resources>
