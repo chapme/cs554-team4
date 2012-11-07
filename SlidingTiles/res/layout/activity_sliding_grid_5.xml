@@ -8,15 +8,13 @@
 
     <RelativeLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
-        <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/backButton"
+        <Button android:text="@string/backButton"
             android:onClick="back" 
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            style="@style/BackButton"/>
     </RelativeLayout>
-    <GridLayout android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="5">
+    <GridLayout android:columnCount="5"
+        style="@style/GridStyle" >
         <Button android:id="@+id/gb11"
             android:onClick="processButtonPress"
             android:text="11" 

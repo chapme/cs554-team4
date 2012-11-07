@@ -2,6 +2,11 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
   <style name="GridStyle" parent="android:Theme">
       <item name="android:buttonStyle">@style/GridButton</item>
+      <item name="android:background">@color/darkorange</item>
+      <item name="android:layout_height">wrap_content</item>
+      <item name="android:layout_width">wrap_content</item>
+      <item name="android:layout_gravity">center_horizontal</item>
+      <item name="android:layout_margin">3dp</item>
   </style>  
   <style name="GridButton" parent="android:style/Widget.Button">
       <item name="android:textSize">15dp</item>
@@ -15,5 +20,13 @@
       <item name="android:layout_height">30dp</item>
       <item name="android:layout_width">30dp</item> 
       <item name="android:background">@drawable/tilebackground</item>     
+  </style>
+  <style name="BackButton">
+      <item name="android:textSize">12dp</item>
+      <item name="android:background">@drawable/backarrow</item>
+      <item name="android:layout_height">wrap_content</item>
+      <item name="android:layout_width">wrap_content</item>
+      <item name="android:layout_margin">3dp</item>
+      <item name="android:layout_marginBottom">3dp</item>
   </style>
 </resources>
