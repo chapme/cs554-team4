@@ -22,7 +22,7 @@
   <style name="GridButtonAI" parent="@style/GridButton">
       <item name="android:layout_height">34dp</item>
       <item name="android:layout_width">34dp</item> 
-      <item name="android:background">@drawable/tilebackground</item>     
+      <item name="android:textSize">14dp</item>   
   </style>
   <style name="BackButton">
       <item name="android:textSize">12dp</item>
