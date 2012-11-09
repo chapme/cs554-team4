@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" 
     android:orientation="vertical"
-    android:id="@+id/llForPlayingGame">
+    android:id="@+id/llForPlayingGame"
+    style="@style/BackgroundLinearLayout">
 
     <RelativeLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
@@ -127,8 +128,7 @@
     <TextView android:id="@+id/userTextArea"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" 
-        android:padding="10dip"
-        android:text=""/>
+        android:text=" "/>
     
     <ViewStub android:id="@+id/ai_stub"
         android:inflatedId="@+id/aiUI"
