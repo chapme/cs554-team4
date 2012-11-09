@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -49,8 +50,7 @@ public class MathMode extends SlidingGrid {
         formattedEquations = new ArrayList<String>();
         
         // Make points visible
-        TextView tv = (TextView) findViewById(R.id.pointsTextArea);
-        tv.setVisibility(View.VISIBLE);
+        ((ViewStub) findViewById(R.id.mm_stub)).setVisibility(View.VISIBLE);
         
         // Create the gesture detector for swipes across the user grid
         gDetector = new GestureDetector(this.getApplicationContext(), new GesturesForMathMode());
@@ -389,7 +389,7 @@ public class MathMode extends SlidingGrid {
     		// Check if we have a valid equation
     		if(validateEquation(tileTexts)) {
     			// Add equation to screen
-    			TextView tv = (TextView) findViewById(R.id.userTextArea);
+    			TextView tv = (TextView) findViewById(R.id.equationTextArea);
     			String currentText = (String) tv.getText();
     			currentText += formattedEquations.get(formattedEquations.size()-1) + "\n";
     			tv.setText(currentText);

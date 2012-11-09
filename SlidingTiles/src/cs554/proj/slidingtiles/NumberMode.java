@@ -57,6 +57,9 @@ public class NumberMode extends SlidingGrid {
         // Generate a winning grid
         generateValidGrid(gridSize);
         
+        // Inflate text area
+		((ViewStub) findViewById(R.id.nm_stub)).setVisibility(View.VISIBLE);
+        
         // Scramble the grid to create a new game for the user. 
         // Having the number of moves made be the square of the number of tiles
         // seems to be sufficient to generate a game.
@@ -209,7 +212,7 @@ public class NumberMode extends SlidingGrid {
     	if(checkForWin(userGrid)) {
     		// User won! Add text to screen saying they won and set won to true so
     		// future button presses on the grid are ignored
-    		TextView tv = (TextView) findViewById(R.id.userTextArea);
+    		TextView tv = (TextView) findViewById(R.id.winnerTextArea);
     		tv.setText("Winner!");
     		setWon(true);
     	}

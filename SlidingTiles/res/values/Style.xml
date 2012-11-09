@@ -18,21 +18,56 @@
       <item name="android:padding">0dp</item>
       <item name="android:layout_margin">0dp</item>
       <item name="android:background">@drawable/tilebackground</item>
+      <item name="android:textColor">@color/salmon</item>
   </style>
   <style name="GridButtonAI" parent="@style/GridButton">
-      <item name="android:layout_height">34dp</item>
-      <item name="android:layout_width">34dp</item> 
+      <item name="android:layout_height">32dp</item>
+      <item name="android:layout_width">32dp</item> 
       <item name="android:textSize">14dp</item>   
   </style>
   <style name="BackButton">
       <item name="android:textSize">12dp</item>
-      <item name="android:background">@drawable/backarrow</item>
+      <item name="android:background">@drawable/backarrowblue</item>
       <item name="android:layout_height">wrap_content</item>
       <item name="android:layout_width">wrap_content</item>
       <item name="android:layout_margin">3dp</item>
       <item name="android:layout_marginBottom">3dp</item>
+      <item name="android:textColor">@color/pink</item>
+      <item name="android:textStyle">bold</item>
   </style>
   <style name="BackgroundLinearLayout">
       <item name="android:background">@drawable/backgroundstar</item>
+      <item name="android:layout_width">match_parent</item>
+      <item name="android:layout_height">match_parent</item>
+      <item name="android:orientation">vertical</item>
+  </style>
+  <style name="PointsTextArea">
+      <item name="android:layout_width">fill_parent</item>
+      <item name="android:layout_height">wrap_content</item>
+      <item name="android:padding">10dip</item>
+      <item name="android:textColor">@color/lightpink</item>
+      <item name="android:textStyle">bold</item>
+  </style>
+  <style name="EquationTextArea">
+      <item name="android:layout_width">fill_parent</item>
+      <item name="android:layout_height">wrap_content</item>
+      <item name="android:textColor">@color/purple</item>
+      <item name="android:textStyle">bold</item>
+  </style>
+  <style name="AILabel">
+      <item name="android:layout_width">fill_parent</item>
+      <item name="android:layout_height">wrap_content</item>
+      <item name="android:textStyle">bold</item>
+      <item name="android:layout_gravity">center_horizontal</item>
+      <item name="android:textColor">@color/lime</item>
+      <item name="android:textSize">14dp</item>
+  </style>
+  <style name="WinnerTextArea">
+      <item name="android:layout_width">wrap_content</item>
+      <item name="android:layout_height">wrap_content</item>
+      <item name="android:textSize">20dp</item>
+      <item name="android:textStyle">bold</item>
+      <item name="android:layout_gravity">center_horizontal</item>
+      <item name="android:textColor">@color/pink</item>
   </style>
 </resources>
