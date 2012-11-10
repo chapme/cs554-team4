@@ -6,28 +6,22 @@
     android:orientation="vertical"
     android:id="@+id/llForAIGame2">
     
-    <TextView android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/aiLabel"/>
+    <TextView android:text="@string/aiLabel"
+        style="@style/AILabel" />
 
-    <GridLayout android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="2">
-        <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/gbAI11"
-            android:text="11" />
-        <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/gbAI12"
-            android:text="12" />
-        <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/gbAI21"
-            android:text="21" />
-        <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/gbAI22"
-            android:text="22" />
+    <GridLayout android:columnCount="2"
+        style="@style/GridStyleAI" >
+        <Button android:id="@+id/gbAI11"
+            android:text="11" 
+            style="@style/GridButtonAI" />
+        <Button android:id="@+id/gbAI12"
+            android:text="12"
+            style="@style/GridButtonAI" />
+        <Button android:id="@+id/gbAI21"
+            android:text="21" 
+            style="@style/GridButtonAI" />
+        <Button android:id="@+id/gbAI22"
+            android:text="22"
+            style="@style/GridButtonAI" />
     </GridLayout>
 </LinearLayout>

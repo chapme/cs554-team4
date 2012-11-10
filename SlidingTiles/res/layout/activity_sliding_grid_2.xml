@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    android:orientation="vertical"
-    android:id="@+id/llForPlayingGame">
+    android:id="@+id/llForPlayingGame"
+    style="@style/BackgroundLinearLayout" >
 
     <RelativeLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
-        <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/backButton"
+        <Button android:text="@string/backButton"
             android:onClick="back" 
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            style="@style/BackButton" />
     </RelativeLayout>
-    <GridLayout android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="2">
-        <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/gb11"
+
+    <ViewStub android:id="@+id/nm_stub"
+        android:inflatedId="@+id/nmTextArea"
+        android:layout="@layout/nm_text_area"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <GridLayout android:columnCount="2"
+        style="@style/GridStyle">
+        <Button android:id="@+id/gb11"
             android:onClick="processButtonPress"
-            android:text="11" />
-        <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/gb12"
+            android:text="11"
+            style="@style/GridButton" />
+        <Button android:id="@+id/gb12"
             android:onClick="processButtonPress"
-            android:text="12" />
-        <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/gb21"
+            android:text="12"
+            style="@style/GridButton" />
+        <Button android:id="@+id/gb21"
             android:onClick="processButtonPress"
-            android:text="21" />
-        <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/gb22"
+            android:text="21"
+            style="@style/GridButton" />
+        <Button android:id="@+id/gb22"
             android:onClick="processButtonPress"
-            android:text="22" />
+            android:text="22"
+            style="@style/GridButton" />
     </GridLayout>
     
-    <TextView android:id="@+id/userTextArea"
+    <ViewStub android:id="@+id/mm_stub"
+        android:inflatedId="@+id/mmScoringArea"
+        android:layout="@layout/mm_scoring_area"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" 
-        android:padding="10dip"
-        android:text=""/>
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom" />
     
     <ViewStub android:id="@+id/ai_stub"
         android:inflatedId="@+id/aiUI"

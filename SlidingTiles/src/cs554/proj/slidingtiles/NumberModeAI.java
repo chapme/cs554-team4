@@ -76,7 +76,7 @@ public class NumberModeAI implements Runnable {
 					aiGrid.processButtonPress(row, col);
 					if(nm.checkForWin(aiGrid)) {
 						nm.setWon(true);
-						TextView tv = (TextView) nm.findViewById(R.id.userTextArea);
+						TextView tv = (TextView) nm.findViewById(R.id.winnerTextArea);
 						tv.setText("The AI won :(");
 					}
 				}

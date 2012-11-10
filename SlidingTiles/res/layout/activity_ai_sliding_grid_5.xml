@@ -6,9 +6,7 @@
     android:orientation="vertical"
     android:id="@+id/llForAIGame5">
     
-    <TextView android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/aiLabel"
+    <TextView android:text="@string/aiLabel"
         style="@style/AILabel"/>
     
     <GridLayout android:columnCount="5" 
