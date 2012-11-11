@@ -2,6 +2,7 @@ package cs554.proj.slidingtiles;
 
 import java.util.Random;
 
+import android.content.res.ColorStateList;
 import android.view.View;
 import android.widget.Button;
 
@@ -181,6 +182,20 @@ public class Grid {
     	return (String) b.getText();
     }
     
+    public boolean setButtonTextColor(int row, int col, int color) {
+    	if(!checkBounds(row, col))
+    		return false;
+    	gbButtons[row-1][col-1].setTextColor(color);
+    	return true;
+    }
+    
+    public int getButtonTextColor(int row, int col) {
+    	if(!checkBounds(row, col))
+    		return -1;
+    	ColorStateList cs = gbButtons[row-1][col-1].getTextColors();
+    	return cs.getDefaultColor();
+    }
+    
     /**
      * Get the row index of a button by button id
      * 
@@ -243,12 +258,16 @@ public class Grid {
     		// Check if we're shifting right or shifting left in the row
     		if(col > hbCol) {
     			// Shift left
-    			for(int i = hbCol; i < col; i++)
+    			for(int i = hbCol; i < col; i++) {
     				setButtonText(hbRow, i, getButtonText(hbRow, i+1));
+    				setButtonTextColor(hbRow, i, getButtonTextColor(hbRow, i+1));
+    			}
     		} else {
     			// Shift right
-    			for(int i = hbCol; i > col; i--)
+    			for(int i = hbCol; i > col; i--) {
     				setButtonText(hbRow, i, getButtonText(hbRow, i-1));
+    				setButtonTextColor(hbRow, i, getButtonTextColor(hbRow, i-1));
+    			}
     		}
     		// Move missing tile
     		hideButton(row, col);
@@ -256,12 +275,16 @@ public class Grid {
     		// Check if we're shifting up or down in the column
     		if(row > hbRow) {
     			// We're shifting up
-        		for(int i = hbRow; i < row; i++)
+        		for(int i = hbRow; i < row; i++) {
         			setButtonText(i, hbCol, getButtonText(i+1, hbCol));
+    				setButtonTextColor(i, hbCol, getButtonTextColor(i+1, hbCol));
+        		}
     		} else {
     			// We're shifting down
-        		for(int i = hbRow; i > row; i--)
+        		for(int i = hbRow; i > row; i--) {
         			setButtonText(i, hbCol, getButtonText(i-1, hbCol));
+    				setButtonTextColor(i, hbCol, getButtonTextColor(i-1, hbCol));
+        		}
     		}
     		// Move missing tile
     		hideButton(row, col);

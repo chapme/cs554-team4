@@ -3,6 +3,7 @@ package cs554.proj.slidingtiles;
 import java.util.ArrayList;
 import java.util.Random;
 
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -100,6 +101,13 @@ public class MathMode extends SlidingGrid {
         return super.onOptionsItemSelected(item);
     }
     
+    private void setColor(int row, int col, String text) {
+    	if(text.equals("+") || text.equals("-") || text.equals("x"))
+    		this.userGrid.setButtonTextColor(row, col, getResources().getColor(R.color.lime));
+    	else if(text.equals("="))
+    		this.userGrid.setButtonTextColor(row, col, getResources().getColor(R.color.periwinkle));
+    }
+    
     /**
      * This function fills out a row in the grid
      * 
@@ -112,10 +120,15 @@ public class MathMode extends SlidingGrid {
      */
     private void setRow(int index, String v1, String v2, String v3, String v4, String v5) {
     	userGrid.setButtonText(index, 1, v1);
+    	setColor(index, 1, v1);
     	userGrid.setButtonText(index, 2, v2);
+    	setColor(index, 2, v2);
     	userGrid.setButtonText(index, 3, v3);
+    	setColor(index, 3, v3);
     	userGrid.setButtonText(index, 4, v4);
+    	setColor(index, 4, v4);
     	userGrid.setButtonText(index, 5, v5);
+    	setColor(index, 5, v5);
     }
     
     /**
@@ -130,10 +143,15 @@ public class MathMode extends SlidingGrid {
      */
     private void setCol(int index, String v1, String v2, String v3, String v4, String v5) {
     	userGrid.setButtonText(1, index, v1);
+    	setColor(1, index, v1);
     	userGrid.setButtonText(2, index, v2);
+    	setColor(2, index, v2);
     	userGrid.setButtonText(3, index, v3);
+    	setColor(3, index, v3);
     	userGrid.setButtonText(4, index, v4);
+    	setColor(4, index, v4);
     	userGrid.setButtonText(5, index, v5);
+    	setColor(5, index, v5);
     }
     
     
