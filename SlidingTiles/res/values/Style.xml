@@ -44,15 +44,22 @@
   <style name="PointsTextArea">
       <item name="android:layout_width">fill_parent</item>
       <item name="android:layout_height">wrap_content</item>
-      <item name="android:padding">10dip</item>
+      <item name="android:padding">10dp</item>
       <item name="android:textColor">@color/lightpink</item>
       <item name="android:textStyle">bold</item>
+      <item name="android:textSize">18dp</item>
   </style>
   <style name="EquationTextArea">
       <item name="android:layout_width">fill_parent</item>
       <item name="android:layout_height">wrap_content</item>
       <item name="android:textColor">@color/purple</item>
       <item name="android:textStyle">bold</item>
+      <item name="android:textSize">18dp</item>
+      <item name="android:padding">10dp</item>
+      <item name="android:maxLines">6</item>
+      <item name="android:scrollbars">vertical</item>
+      <item name="android:scrollbarAlwaysDrawVerticalTrack">true</item>
+      <item name="android:scrollbarFadeDuration">0</item>
   </style>
   <style name="AILabel">
       <item name="android:layout_width">wrap_content</item>

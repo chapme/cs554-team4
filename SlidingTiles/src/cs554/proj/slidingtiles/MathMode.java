@@ -3,10 +3,11 @@ package cs554.proj.slidingtiles;
 import java.util.ArrayList;
 import java.util.Random;
 
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.text.SpannableString;
+import android.text.method.ScrollingMovementMethod;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.Menu;
@@ -52,6 +53,8 @@ public class MathMode extends SlidingGrid {
         
         // Make points visible
         ((ViewStub) findViewById(R.id.mm_stub)).setVisibility(View.VISIBLE);
+        TextView tv = (TextView) findViewById(R.id.equationTextArea);
+        tv.setMovementMethod(new ScrollingMovementMethod());
         
         // Create the gesture detector for swipes across the user grid
         gDetector = new GestureDetector(this.getApplicationContext(), new GesturesForMathMode());
@@ -408,8 +411,8 @@ public class MathMode extends SlidingGrid {
     		if(validateEquation(tileTexts)) {
     			// Add equation to screen
     			TextView tv = (TextView) findViewById(R.id.equationTextArea);
-    			String currentText = (String) tv.getText();
-    			currentText += formattedEquations.get(formattedEquations.size()-1) + "\n";
+    			String currentText = ((SpannableString) tv.getText()).toString();
+    			currentText += formattedEquations.get(formattedEquations.size()-1) + "      ";
     			tv.setText(currentText);
     			
     			// Update points
