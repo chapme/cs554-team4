@@ -3,6 +3,7 @@ package cs554.proj.slidingtiles;
 import java.util.ArrayList;
 import java.util.Random;
 
+import android.gesture.GestureOverlayView;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -43,6 +44,7 @@ public class MathMode extends SlidingGrid {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, 5);
+        
         // Generate a valid game layout and then scramble the grid so the
         // user can play.
         generateGame();
