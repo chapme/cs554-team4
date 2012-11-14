@@ -61,6 +61,25 @@ public class MathMode extends SlidingGrid {
         // Create the gesture detector for swipes across the user grid
         gDetector = new GestureDetector(this.getApplicationContext(), new GesturesForMathMode());
         
+        // Support color swipes
+        GestureOverlayView gv = (GestureOverlayView) findViewById(R.id.gestureView);
+        gv.addOnGestureListener(new GestureOverlayView.OnGestureListener() {
+        	private MotionEvent m1, m2;
+        	
+			public void onGesture(GestureOverlayView v, MotionEvent me) {}
+			public void onGestureCancelled(GestureOverlayView v, MotionEvent me) {}
+			
+			public void onGestureEnded(GestureOverlayView v, MotionEvent me) {
+				m2 = me;
+				GesturesForMathMode gfmm = new GesturesForMathMode();
+				gfmm.onFling(m1, m2, 1, 1);
+			}
+			
+			public void onGestureStarted(GestureOverlayView v, MotionEvent me) {
+				m1 = me;
+			}
+		});
+        
         // Tell the linear layout containing the user grid to pass swipe events to our
         // gesture detector algorithm
         View v = findViewById(R.id.llForPlayingGame);
